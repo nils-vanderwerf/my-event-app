@@ -1,0 +1,94 @@
+<%= form_with model: @event, local: true do |form| %>
+    <%# DISPLAY ANY ERRORS HERE %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2 class="has-text-danger"><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul class="has-text-danger">
+        <% @event.errors.each do |error| %>
+          <li>
+            <%# <span class="icon"> %>
+            <%# FONT AWESOME %>
+              <%# <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            </span> %>
+            <%= error.full_message %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %><br />
+    <%= form.text_field :name,
+                      autofocus: true,
+                      required: true,
+                      placeholder: "Dave's BBQ",
+                      class: "input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %><br />
+    <%= form.text_area :description,
+                    placeholder: "Description about the event",
+                    class: "input text-input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %><br />
+    <%= form.text_field :location,
+                      placeholder: "My house, The park, etc.",
+                      required: true,
+                      class: "input" %>
+  </div>
+
+  <div class="field form-date-time">
+    <div>
+      <%= form.label "Start Date" %><br />
+      <%= form.date_field :start_date,
+                       required: true,
+                       placeholder: "dd/mm/yyyy",
+                       class: "input" %>
+    </div>
+    <div>
+      <%= form.label "Start Time" %><br />
+      <%= form.time_field :start_time,
+                       required: true,
+                       placeholder: "24:00",
+                       class: "datepicker" %>
+    </div>
+   </div>
+
+  <div class="field form-date-time">
+    <div>
+      <%= form.label "End Date" %><br />
+      <%= form.date_field :end_date,
+                       required: true,
+                       placeholder: "dd/mm/yyyy",
+                       class: "datepicker" %>
+    </div>
+    <div>
+      <%= form.label "End Time" %><br />
+      <%= form.time_field :end_time,
+                       required: true,
+                       placeholder: "24:00",
+                       class: "input" %>
+    </div>
+   </div>
+
+  <%# <div class="field invite-names">
+    <p><strong>Invitation Options:</strong></p>
+    <%= f.fields_for :invitations do |invite_form| %>
+      <%# <%= invite_form.collection_check_boxes :attendee_id, @attendee_options, :id, :name, { checked: @attendees } do |option| %>
+        <%# <p class="invite-names">
+          <%= option.check_box %>
+          <%# <%= option.label %>
+        <%# </p>
+      <% end %>
+    <%# <% end %>
+  <%# </div> %>
+
+  <div class="actions">
+    <%= form.submit "Submit", class:"button is-link is-fullwidth" %>
+  </div>
+<% end %>

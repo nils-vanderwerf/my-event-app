@@ -1,0 +1,24 @@
+
+        <h2 class="title is-2"><%= @event.name %><h2>
+
+          <h4 class="subtitle is-4"> Host:
+            <%= @event.host.name %>
+          </h4>
+
+          <h4><%= @event.location %></h4>
+
+            <p><strong><%= @event.start_date.strftime("%b %-d, %Y")%>
+            <%= @event.start_time.strftime(" at %l:%M %P")%> - </strong></p>
+            <% if (@event.start_date - @event.end_date).to_i == 0 %>
+              <p><strong> <%= @event.end_time.strftime("%l:%M %P") %> </strong></p>
+            <% else %>
+              <p><strong> <%= @event.end_date.strftime("%b %-d, %Y")%>
+              <%= @event.end_time.strftime(" at %l:%M %P")%> </p></strong>
+            <% end %>
+
+          
+        <p><%= @event.description %><p>
+            
+          
+      
+
