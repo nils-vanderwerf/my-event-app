@@ -1,0 +1,55 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <h2 class="title is-2">Update Account</h2>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name,
+                              class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email,
+                              class: "input" %>
+          </div>
+
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+            <%= f.password_field :password,
+                                 class: "input" %>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation,
+                                 class: "input" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :current_password %> <i>(to confirm your changes)</i><br />
+            <%= f.password_field :current_password,
+                                 required: true,
+                                 class: "input" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Update", class:"button is-link is-fullwidth" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
