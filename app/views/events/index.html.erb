@@ -1,7 +1,4 @@
-<% current_user_name = current_user.present? ? current_user[:name] : 'Stranger' %>
-
-<%= render plain: current_user_name %>
-<h1>Welcome, <%= current_user.name %> </h1>
+<h1>Welcome, <%= current_user.present? ? current_user[:name] : 'Stranger' %> </h1>
 
 <% @events.each do |event| %>
     <div class="row mb-5">
