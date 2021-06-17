@@ -15,6 +15,7 @@ class EventsController < ApplicationController
 
     def create
         @event = current_user.hosted_events.build(event_params)
+        
          #Build returns a new object of the collection type that has been instantiated with attributes and linked to this object, but have not yet been saved
          if @event.save
             redirect_to @event, notice: "Your event was created"
@@ -28,6 +29,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-        params.require(:event).permit(:name, :start_date, :end_date, :start_time, :end_time, :location, :description)
-      end
+        params.require(:event).permit(:name, :start_date, :end_date, :start_time, :end_time, :location, :description).with_defaults(host_id: current_user.id)
+    end
 end
