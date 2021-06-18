@@ -11,10 +11,10 @@
             <%= link_to 'Edit', edit_event_path, class: "btn btn-outline-secondary" %>
             <%= link_to 'Delete', event_path, method: :delete, class: "btn btn-outline-secondary", data: { confirm: "Delete this event?"} %>
 
-          <% elsif @event.users.include?(current_user) %>
+          <% elsif @event.guests.include?(current_user) %>
             <%= link_to 'Cancel RSVP', cancel_rsvp_event_path, class: "btn btn-outline-secondary" %>
           <% else %>
-            <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.date_time < Time.now %>
+            <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now %>
           <% end %>
           <p><strong><%= @event.start_date.strftime("%b %-d, %Y")%>
             <%= @event.start_time.strftime(" at %l:%M %P")%> - </strong></p>
