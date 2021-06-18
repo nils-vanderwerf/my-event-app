@@ -1,14 +1,14 @@
 class Event < ApplicationRecord
     belongs_to :host, class_name: "User"
     has_many :rsvps
-    has_many :users, through: :rsvps
+    has_many :guests, through: :rsvps
 
     validates :name, presence: :true
     validates :location, presence: true
     validate :existance_of_date_time,
-                :correct_date_format,
-                :start_date_must_be_in_future,
-                :end_must_be_after_start
+            :correct_date_format,
+            :start_date_must_be_in_future,
+            :end_must_be_after_start
     
 
     def existance_of_date_time
