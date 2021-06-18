@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rsvps
   devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   get '/user/:id', to: 'users#profile', as: :user
   devise_for :views
