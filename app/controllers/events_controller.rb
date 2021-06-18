@@ -29,6 +29,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
+        puts current_user.id
         params.require(:event).permit(:name, :start_date, :end_date, :start_time, :end_time, :location, :description).with_defaults(host_id: current_user.id)
     end
 end
