@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
     belongs_to :host, class_name: "User"
-    has_many :guests, through: :invitations, source: :guests
+    has_many :rsvps
+    has_many :users, through: :rsvps
 
     validates :name, presence: :true
     validates :location, presence: true
@@ -8,8 +9,7 @@ class Event < ApplicationRecord
                 :correct_date_format,
                 :start_date_must_be_in_future,
                 :end_must_be_after_start
-
-    private
+    
 
     def existance_of_date_time
         return if end_date && end_time && start_time && start_date
@@ -45,7 +45,7 @@ class Event < ApplicationRecord
             errors.add(:end_time, 'must be after start time.')
         elsif start_date > end_date
             errors.add(:end_date, 'must be the same or after start date.')
-        end
+      end
     end
 
 end

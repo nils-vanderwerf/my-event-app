@@ -76,18 +76,6 @@
     </div>
    </div>
 
-  <%# <div class="field invite-names">
-    <p><strong>Invitation Options:</strong></p>
-    <%= f.fields_for :invitations do |invite_form| %>
-      <%# <%= invite_form.collection_check_boxes :attendee_id, @attendee_options, :id, :name, { checked: @attendees } do |option| %>
-        <%# <p class="invite-names">
-          <%= option.check_box %>
-          <%# <%= option.label %>
-        <%# </p>
-      <% end %>
-    <%# <% end %>
-  <%# </div> %>
-
   <div class="actions">
     <%= form.submit "Submit", class:"button is-link is-fullwidth" %>
   </div>
