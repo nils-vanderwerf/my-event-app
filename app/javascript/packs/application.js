@@ -13,4 +13,5 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import '../css/main.scss'
+import '../css/custom.scss'
 import "@fortawesome/fontawesome-free/js/all"

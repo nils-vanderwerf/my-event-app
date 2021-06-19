@@ -1,47 +1,88 @@
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
 
-        <h2 class="title"><%= @event.name.titleize %><h2>
+        <div class="row mb-4">
+          <div class="col title">
+            <h2><%= @event.name %></h2>
+            <h4>Hosted by: <%= @event.host.name %></h4>
+          </div>
+        </div>
+        
+        <div class="col text-right rsvp-or-edit">
+            <%# ABILITY TO RSVP %>
+            <% if current_user == @event.host %>
+                <%= link_to 'Edit', edit_event_path, class: "btn btn-outline-secondary" %>
 
-          
+                <%= link_to 'Delete', event_path, method: :delete, class: "btn btn-outline-secondary", data: { confirm: "Delete this event?"} %>
 
-          <h4><%= @event.location %></h4>
+            <% elsif @event.guests.include?(current_user) %>
+              <%= link_to 'Cancel RSVP', cancel_rsvp_event_path, class: "btn btn-outline-secondary" %>
 
-          <div>
-
-          <% if current_user == @event.host %>
-            <%= link_to 'Edit', edit_event_path, class: "btn btn-outline-secondary" %>
-            <%= link_to 'Delete', event_path, method: :delete, class: "btn btn-outline-secondary", data: { confirm: "Delete this event?"} %>
-
-          <% elsif @event.guests.include?(current_user) %>
-            <%= link_to 'Cancel RSVP', cancel_rsvp_event_path, class: "btn btn-outline-secondary" %>
-          <% else %>
-            <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now %>
-          <% end %>
-          <p><strong><%= @event.start_date.strftime("%b %-d, %Y")%>
-            <%= @event.start_time.strftime(" at %l:%M %P")%> - </strong></p>
-            <% if (@event.start_date - @event.end_date).to_i == 0 %>
-              <p><strong> <%= @event.end_time.strftime("%l:%M %P") %> </strong></p>
             <% else %>
-              <p><strong> <%= @event.end_date.strftime("%b %-d, %Y")%>
-              <%= @event.end_time.strftime(" at %l:%M %P")%> </p></strong>
+              <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now %>
             <% end %>
+          </div>
+        </div>
 
-        <p><%= @event.description %><p>
+        <div class="row mb-4 event-details-outer-wrapper">
+          <section class="col text-left description">
+            <div class="card-body">
+                  <p class="desc-text"> 
+                    <%= simple_format @event.description %> 
+                  </p>
+            </div>
+          </section>
+        
 
-        <h4>Host: <%= @event.host.name %> </h4>
 
-        <p>EVENT GUESTS</p>
+        <section class="col text-right" id="event-extra-details">
+          <div class="card-body">
+          <p class="pb-3">
+            <span class="icon">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </span>
+            <%= @event.location %>
+          </p>
+
+          <p class="pb-3">
+            <span class="icon">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </span>
+            <%= @event.start_date.strftime("%b %-d, %Y")%>
+            <%= @event.start_time.strftime(" at %l:%M %P")%> -
+            <% if (@event.start_date - @event.end_date).to_i == 0 %>
+              <%= @event.end_time.strftime("%l:%M %P") %>
+            <% else %>
+              <%= @event.end_date.strftime("%b %-d, %Y")%>
+              <%= @event.end_time.strftime(" at %l:%M %P")%>
+            <% end %>
+          </p>
+        </section>
+
+
+        </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+        <h3>EVENT GUESTS</h3>
 
         <% if @event.guests.empty? %>
         <div class="list-group">
-          <li class="list-group-item text-muted">This event has no guests yet</li>
+        <li class="list-group-item text-muted">This event has no guests yet</li>
         </div>
         <% else %>
-          <div class="list-group">
-            <% @event.guests.each do |guest| %>
-            <li class="list-group-item"> <%= guest.name %> </li>
-            <% end %>
-          </div>
+        <div class="list-group">
+        <% @event.guests.each do |guest| %>
+        <li class="list-group-item"> <%= guest.name %> </li>
         <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
 
             
           
