@@ -33,6 +33,7 @@ gem 'devise'
 gem "omniauth", "~> 1.9.1"
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'bootstrap',  '~>4.3.1'
 gem 'bootstrap-datepicker-rails' 
 gem 'bootstrap-sass', '3.3.6'
 

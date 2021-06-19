@@ -14,5 +14,11 @@
  *= require bootstrap-datepicker
  */
 
+ @import "bootstrap";
  @import 'bootstrap-sprockets'; 
- @import 'bootstrap-datepicker' 
+ @import 'bootstrap-datepicker'; 
+
+ // Description input field
+.text-input {
+    height: 5em;
+  }
