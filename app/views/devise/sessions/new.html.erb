@@ -30,7 +30,9 @@
             <% end %>
 
             <div class="actions">
-              <%= f.submit "Log in", class:"button is-link is-fullwidth" %>
+              <%= f.submit "Log in", class:"button is-link is-fullwidth" %> 
+                  <i class="fab fa-facebook-f fa-3x mx-2"></i>
+
               <%= link_to "Log In with Facebook", user_facebook_omniauth_authorize_path %>
             </div>
           <% end %>
