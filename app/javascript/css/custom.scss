@@ -7,6 +7,13 @@ section#event-details {
     flex-wrap: wrap;
 }
 
+input {
+    outline: rgb(153, 152, 152);
+}
+
+.inline-link {
+    display: inline;
+}
 $container-max-widths: (
   sm: 540px,
   md: 720px,

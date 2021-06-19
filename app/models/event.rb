@@ -9,6 +9,9 @@ class Event < ApplicationRecord
             :correct_date_format,
             :start_date_must_be_in_future,
             :end_must_be_after_start
+
+    scope :past, -> { where('end_date < ?', Time.zone.today).order(start_date: :desc, start_time: :desc) }
+    scope :future, -> { where('start_date > ?', Time.zone.today).order(:start_date, :start_time) }
     
 
     def existance_of_date_time

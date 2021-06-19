@@ -6,7 +6,7 @@
         <div class="row mb-4">
           <div class="col title">
             <h2><%= @event.name %></h2>
-            <h4>Hosted by: <%= @event.host.name %></h4>
+            
           </div>
         </div>
         
@@ -21,7 +21,7 @@
               <%= link_to 'Cancel RSVP', cancel_rsvp_event_path, class: "btn btn-outline-secondary" %>
 
             <% else %>
-              <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now %>
+              <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now && @event.end_time < Date.today %>
             <% end %>
           </div>
         </div>
@@ -39,7 +39,14 @@
 
         <section class="col text-right" id="event-extra-details">
           <div class="card-body">
-          <p class="pb-3">
+          <p>
+            <span class="icon">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+            </span>
+            Hosted by: <%= @event.host.name %>
+          </p>
+          
+          <p>
             <span class="icon">
               <i class="fa fa-map-marker" aria-hidden="true"></i>
             </span>
@@ -51,7 +58,7 @@
               <i class="fa fa-calendar" aria-hidden="true"></i>
             </span>
             <%= @event.start_date.strftime("%b %-d, %Y")%>
-            <%= @event.start_time.strftime(" at %l:%M %P")%> -
+            <%= @event.start_time.strftime(" at %l:%M %P")%> -<br/>
             <% if (@event.start_date - @event.end_date).to_i == 0 %>
               <%= @event.end_time.strftime("%l:%M %P") %>
             <% else %>

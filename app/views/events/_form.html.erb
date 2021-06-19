@@ -1,3 +1,4 @@
+
 <%= form_with model: @event, local: true do |form| %>
     <%# DISPLAY ANY ERRORS HERE %>
   <% if @event.errors.any? %>
@@ -7,9 +8,8 @@
       <ul class="has-text-danger">
         <% @event.errors.each do |error| %>
           <li>
-            <%# <span class="icon"> %>
-            <%# FONT AWESOME %>
-              <%# <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <span class="icon">
+              <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             </span> %>
             <%= error.full_message %>
           </li>
@@ -31,7 +31,7 @@
     <%= form.label :description %><br />
     <%= form.text_area :description,
                     placeholder: "Description about the event",
-                    class: "input text-input" %>
+                    class: "form-control" %>
   </div>
 
   <div class="field">
@@ -39,7 +39,7 @@
     <%= form.text_field :location,
                       placeholder: "My house, The park, etc.",
                       required: true,
-                      class: "input" %>
+                      class: "form-control" %>
   </div>
 
   <div class="field form-date-time">
@@ -48,14 +48,14 @@
       <%= form.date_field :start_date,
                        required: true,
                        placeholder: "dd/mm/yyyy",
-                       class: "input" %>
+                       class: "form-control" %>
     </div>
     <div>
       <%= form.label "Start Time" %><br />
       <%= form.time_field :start_time,
                        required: true,
                        placeholder: "24:00",
-                       class: "datepicker" %>
+                       class: "datepicker form-control" %>
     </div>
    </div>
 
@@ -65,18 +65,19 @@
       <%= form.date_field :end_date,
                        required: true,
                        placeholder: "dd/mm/yyyy",
-                       class: "datepicker" %>
+                       class: "datepicker form-control" %>
     </div>
     <div>
       <%= form.label "End Time" %><br />
       <%= form.time_field :end_time,
                        required: true,
                        placeholder: "24:00",
-                       class: "input" %>
+                       class: "form-control" %>
     </div>
    </div>
 
   <div class="actions">
-    <%= form.submit "Submit", class:"button btn-primary is-link is-fullwidth" %>
+    <%= form.submit "Submit", class:"button btn-primary" %>
   </div>
 <% end %>
+</div>
