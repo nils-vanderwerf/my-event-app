@@ -2,6 +2,11 @@ section#event-details {
     background-color: #ccc;
 }
 
+// Vertically center burger menu
+.navbar-burger {
+    height: auto;
+  }
+
 .card-wrapper {
     display: flex;
     flex-wrap: wrap;

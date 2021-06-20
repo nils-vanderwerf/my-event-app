@@ -1,43 +1,46 @@
-<nav class="navbar is-dark px-4" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <%= link_to events_path, class: "navbar-item" do %>
-            <h1 class="title is-2 has-text-light">My Events App</h1>
-        <% end %>
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"  data-target="navbarPrivateEvents">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div class="navbar-menu" id="navbarPrivateEvents" >
-        <div class="navbar-start">
+<nav class="navbar bg-primary" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <%= link_to events_path, class: "navbar-link" do %>
+                <h1 class="title is-2 text-light">My Events App</h1>
+            <% end %>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"  data-target="navbarPrivateEvents">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            </a>
+
         </div>
-          <div class="navbar-end">
-          <% if user_signed_in? %>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                <%= current_user.name %>'s Events
-              </a>
-              <div class="navbar-dropdown">
-                <%= link_to 'My Events', user_path(id: current_user.id), class: "navbar-item" %>
-                <%= link_to 'Create a new Event', new_event_path, class: "navbar-item" %>
-                <hr class="dropdown-divider">
-                <%= link_to 'View all Events', events_path, class: "navbar-item" %>
-              </div>
+        <div class="navbar-menu" id="navbarPrivateEvents" >
             </div>
-            <div class="navbar-item">
-              <div class="buttons">
-                <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "button is-light navbar-item" %>
-              </div>
+            <% if user_signed_in? %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    <%= current_user.name %>'s Events
+                </a>
+                <div class="navbar-dropdown">
+                    <%= link_to 'My Events', user_path(id: current_user.id), class: "navbar-item" %>
+                    <%= link_to 'Create a new Event', new_event_path, class: "navbar-item" %>
+                    <hr class="dropdown-divider">
+                    <%= link_to 'View all Events', events_path, class: "navbar-item" %>
+                </div>
+                </div>
+                <div class="navbar-item">
+                <div class="buttons">
+                    <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "button is-light navbar-item" %>
+                </div>
+                </div>
+            <% else %>
+                <%= link_to 'Log In', new_user_session_path, class: "navbar-item" %>
+                <div class="navbar-item">
+                <div class="buttons">
+                    <%= link_to 'Sign Up', new_user_registration_path, class: "button is-light navbar-item" %>
+                </div>
+                </div>
+            <% end %>
             </div>
-          <% else %>
-            <%= link_to 'Log In', new_user_session_path, class: "navbar-item" %>
-            <div class="navbar-item">
-              <div class="buttons">
-                <%= link_to 'Sign Up', new_user_registration_path, class: "button is-light navbar-item" %>
-              </div>
             </div>
-          <% end %>
         </div>
       </div>
-    </nav>
+</nav>
