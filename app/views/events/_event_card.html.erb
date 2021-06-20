@@ -1,12 +1,18 @@
-
 <div class="col-md-4 mb-4">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title"><%= name %></h3>
+                <h3 class="card-title"><%= event.name.titleize %></h3>
 
-                <p class="event-date"><%= start_time %> </p>
-                <p class="event-date"><%= start_date %></p>
-                <%= link_to 'Learn More', event_path(id: id), class: "btn btn-outline-primary btn-block" %>
+                <p class="event-date">
+                    <%= event.start_date.strftime("%b %-d, %Y") %> 
+                </p>
+                
+                <p class="event-time">
+                    <%= event.start_time.strftime(" at %l:%M %P") %>
+                </p>
+                
+                <%= link_to 'Learn More', event_path(id: event.id), 
+                class: "btn btn-outline-primary btn-block" %>
             </div>
         </div>
      </div>
