@@ -13,17 +13,20 @@
 <% end %>
 </div>
 
-<h2>UPCOMING EVENTS<h2>
-<div class="row card-wrapper mb-5">
-<% Event.future.each do |event| %>
-    <%= render partial: 'event_card', 
-    :locals => {
-        :name => event.name.titleize, 
-        :start_date => event.start_date.strftime("%b %-d, %Y"), :start_time => event.start_time.strftime(" at %l:%M %P"),
-        :id => event.id
-    } 
-    %>
-<% end %>
+<div class="row-upcoming">
+    <% if Event.future %>
+    <h2>UPCOMING EVENTS<h2>
+    <div class="row card-wrapper mb-5">
+    <% Event.future.each do |event| %>
+        <%= render partial: 'event_card', 
+        :locals => {
+            :name => event.name.titleize, 
+            :start_date => event.start_date.strftime("%b %-d, %Y"), :start_time => event.start_time.strftime(" at %l:%M %P"),
+            :id => event.id
+        } 
+        %>
+    <% end %>
+    </div>
 </div>
 
 <h2>PAST EVENTS<h2>
