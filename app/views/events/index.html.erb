@@ -1,16 +1,20 @@
 <h1>Welcome, <%= current_user.present? ? current_user[:name] : 'Stranger' %> </h1>
 
-<h2>HAPPENING TODAY<h2>
-<div class="row card-wrapper mb-5">
-<% Event.today.each do |event| %>
-    <%= render partial: 'event_card', 
-    :locals => {
-        :name => event.name.titleize, 
-        :start_date => event.start_date.strftime("%b %-d, %Y"), :start_time => event.start_time.strftime(" at %l:%M %P"),
-        id: event.id
-    } 
-    %>
-<% end %>
+<div class="row-upcoming">
+    <% if Event.today %>
+    <h2>HAPPENING TODAY<h2>
+    <div class="row card-wrapper mb-5">
+    <% Event.today.each do |event| %>
+        <%= render partial: 'event_card', 
+        :locals => {
+            :name => event.name.titleize, 
+            :start_date => event.start_date.strftime("%b %-d, %Y"), :start_time => event.start_time.strftime(" at %l:%M %P"),
+            id: event.id
+        } 
+        %>
+    <% end %>
+    </div>
+    <% end %>
 </div>
 
 <div class="row-upcoming">
@@ -25,6 +29,7 @@
             :id => event.id
         } 
         %>
+    <% end %>
     <% end %>
     </div>
 </div>
