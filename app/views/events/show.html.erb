@@ -21,7 +21,7 @@
               <%= link_to 'Cancel RSVP', cancel_rsvp_event_path, class: "btn btn-outline-secondary" %>
 
             <% else %>
-              <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now && @event.end_time < Date.today %>
+              <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now && @event.end_date < Date.today %>
             <% end %>
           </div>
         </div>
