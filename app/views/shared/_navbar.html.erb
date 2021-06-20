@@ -1,31 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-<div class="container">
-  <a class="navbar-brand text-left" href="/">My Events App</a>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-        <% if user_signed_in? %>
-            <li class="nav-item"><p>Logged in as <%= current_user.name %></li>
-            <li class="nav-item">
-                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-            </li>
-        <% else %>
-            
-            <li class="nav-item">
-                <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
-            </li>
-            <li class="nav-item">
-                <%= link_to 'Register', new_user_registration_path, class: 'nav-link' %>
-            </li>
+<nav class="navbar is-dark px-4" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to events_path, class: "navbar-item" do %>
+            <h1 class="title is-2 has-text-light">My Events App</h1>
         <% end %>
-          <li class="nav-item">
-                <%= link_to 'Create a New Event', new_event_path, class: 'nav-link bg-light text-dark' %>
-            </li>
-    </ul>
-  </div>
-  </div>
-</nav>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"  data-target="navbarPrivateEvents">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navbarPrivateEvents" >
+        <div class="navbar-start">
+        </div>
+          <div class="navbar-end">
+          <% if user_signed_in? %>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                <%= current_user.name %>'s Events
+              </a>
+              <div class="navbar-dropdown">
+                <%= link_to 'My Events', user_path(id: current_user.id), class: "navbar-item" %>
+                <%= link_to 'Create a new Event', new_event_path, class: "navbar-item" %>
+                <hr class="dropdown-divider">
+                <%= link_to 'View all Events', events_path, class: "navbar-item" %>
+              </div>
+            </div>
+            <div class="navbar-item">
+              <div class="buttons">
+                <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "button is-light navbar-item" %>
+              </div>
+            </div>
+          <% else %>
+            <%= link_to 'Log In', new_user_session_path, class: "navbar-item" %>
+            <div class="navbar-item">
+              <div class="buttons">
+                <%= link_to 'Sign Up', new_user_registration_path, class: "button is-light navbar-item" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>

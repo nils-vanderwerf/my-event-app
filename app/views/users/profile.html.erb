@@ -1,0 +1,21 @@
+ <h1><%= @user.name %></h1>
+  <h2>Email: <%= @user.email %></h2>
+
+ <div class="row">
+    <div class="col md mb-4">
+    <p class="text-muted">EVENTS HOSTED</p>
+        <div class="list-group mt-3">
+            <% @user.hosted_events.each do |event| %>
+            <%= link_to event.title, event_path(event), class: "list-group-item list-group-item-action" %>
+            <% end %>
+        </div>
+
+    <div class="col-md mb-4">
+        <p class="text-muted"> <%= pluralize(@user.attended_events.count, 'event').upcase %> ATTENDED</p>
+        <div class="list-group mt-3">
+        <% @user.events.each do |event| %>
+            <%= link_to event.title, event_path(event), class: "list-group-item list-group-item-action" %>
+        <% end %>
+        </div>
+    </div>
+ </div>
