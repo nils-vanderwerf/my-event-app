@@ -5,15 +5,14 @@
                 <h1 class="title is-2 text-light">My Events App</h1>
             <% end %>
 
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"  data-target="navbarPrivateEvents">
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"  data-target="navbarMyEventApp">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             </a>
 
         </div>
-        <div class="navbar-menu" id="navbarPrivateEvents" >
-            </div>
+        <div class="navbar-menu" id="navbarMyEventApp" > </div>
             <% if user_signed_in? %>
                 <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
@@ -21,8 +20,11 @@
                 </a>
                 <div class="navbar-dropdown">
                     <%= link_to 'My Events', user_path(id: current_user.id), class: "navbar-item" %>
+
                     <%= link_to 'Create a new Event', new_event_path, class: "navbar-item" %>
+
                     <hr class="dropdown-divider">
+                    
                     <%= link_to 'View all Events', events_path, class: "navbar-item" %>
                 </div>
                 </div>
