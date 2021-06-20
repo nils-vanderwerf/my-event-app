@@ -1,7 +1,7 @@
 <nav class="navbar bg-primary" role="navigation" aria-label="main navigation">
     <div class="container">
         <div class="navbar-brand">
-            <%= link_to events_path, class: "navbar-link" do %>
+            <%= link_to events_path, class: "navbar-item" do %>
                 <h1 class="title is-2 text-light">My Events App</h1>
             <% end %>
 
@@ -12,37 +12,30 @@
             </a>
 
         </div>
-        <div class="navbar-menu" id="navbarMyEventApp" > </div>
+
+
+        <div class="navbar-menu" id="navbarMyEventApp">
+
             <% if user_signed_in? %>
-                <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    <%= current_user.name %>'s Events
-                </a>
-                <div class="navbar-dropdown">
-                    <%= link_to 'My Events', user_path(id: current_user.id), class: "navbar-item" %>
 
-                    <%= link_to 'Create a new Event', new_event_path, class: "navbar-item" %>
+            <div class="dropdown">
+                <button class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= current_user.name %>'s Account
+                </button>
+            
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><%= link_to 'My Events', user_path(id: current_user.id), class: "dropdown-item"%></li>
+                <li class="dropdown-item"><%= link_to 'Create a new Event', new_event_path %></li>
+                <li class="dropdown-item"><%= link_to 'View all Events', events_path, class: "navbar-item" %></li>
+                <li class="dropdown-item"><%= link_to "Account", edit_user_registration_path %></li>
+            </div>
 
-                    <hr class="dropdown-divider">
-                    
-                    <%= link_to 'View all Events', events_path, class: "navbar-item" %>
-                </div>
-                </div>
-                <div class="navbar-item">
-                <div class="buttons">
-                    <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "button text-light navbar-item" %>
-                </div>
-                </div>
-            <% else %>
-                <%= link_to 'Log In', new_user_session_path, class: "navbar-item" %>
-                <div class="navbar-item">
-                <div class="buttons">
-                    <%= link_to 'Sign Up', new_user_registration_path, class: "button text-light navbar-item" %>
-                </div>
-                </div>
-            <% end %>
-            </div>
-            </div>
+            <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "button text-light navbar-item" %>
+
+                <% else %>
+                    <%= link_to "Sign Up", new_user_registration_path, class: "nav-item nav-item" %>
+                    <%= link_to "Login", new_user_session_path, class: "nav-item nav-item" %>
+                <% end %>
         </div>
-      </div>
+    </div>
 </nav>
