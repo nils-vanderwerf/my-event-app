@@ -13,15 +13,27 @@
         <div class="col text-right rsvp-or-edit">
             <%# ABILITY TO RSVP %>
             <% if current_user == @event.host %>
-                <%= link_to 'Edit', edit_event_path, class: "btn btn-outline-secondary" %>
+                <%= link_to edit_event_path, class: "btn btn-outline-secondary" do %>
+                 <span><i class="fas fa-edit"></i> Edit</span>
+                <% end %>
 
-                <%= link_to 'Delete', event_path, method: :delete, class: "btn btn-outline-secondary", data: { confirm: "Delete this event?"} %>
+                 <%= link_to event_path, method: :delete, class: "btn btn-outline-secondary", data: { confirm: "Delete this event?"} do %>
+                  <span><i class="far fa-trash-alt"></i> Delete</span>
+                <% end %>
 
             <% elsif @event.guests.include?(current_user) %>
-              <%= link_to 'Cancel RSVP', cancel_rsvp_event_path, class: "btn btn-outline-secondary" %>
+             <%= link_to cancel_rsvp_event_path, method: :delete, class: "btn btn-outline-secondary" do %>
+                  <span><i class="far fa-window-close"></i> Cancel RSVP</span>
+              <% end %>
+
+            <% elsif Event.future.includes(@event) %>
+              <%= link_to rsvp_event_path, class: "btn btn-primary" do %>
+                <span><i class="far fa-check-circle"></i> RSVP</span>
+              <% end %>
 
             <% else %>
-              <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" unless @event.end_time < Time.now && @event.end_date < Date.today %>
+                <span class="text-muted">This event has passed</span>
+
             <% end %>
           </div>
         </div>

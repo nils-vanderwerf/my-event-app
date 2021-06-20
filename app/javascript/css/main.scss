@@ -20,7 +20,7 @@ p {
 h1, h2 {
     font-weight: 600;
 }
-a, a:hover {
+.navbar a, .navbar a:hover {
     text-decoration: none;
     color: $light-text;
 }

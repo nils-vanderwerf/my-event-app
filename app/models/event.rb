@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+
+
     belongs_to :host, class_name: "User"
     has_many :rsvps
     has_many :guests, through: :rsvps
@@ -15,7 +17,6 @@ class Event < ApplicationRecord
             scope :future, -> { where('start_date > ?', Date.today).order(:start_time) }
 
             scope :past, -> { where('end_date < ?', Date.today).order(date_time: :desc) }
-    
 
     def existance_of_date_time
         return if end_date && end_time && start_time && start_date
@@ -52,6 +53,10 @@ class Event < ApplicationRecord
         elsif start_date > end_date
             errors.add(:end_date, 'must be the same or after start date.')
       end
+    end
+
+    def is_today?
+        self.start_date <= Date.today && self.end_date <= Date.today && self.end_time <= Time.zone.now
     end
 
 end
