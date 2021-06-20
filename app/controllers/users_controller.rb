@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
-before_action :authenticate_user!, only: %i[show, create]
+  before_action :authenticate_user!, only: %i[show]
+  
+  def new
+  end
 
-def show
-  @user = current_user
-end
+  def profile
+    @user = User.find(params[:id])
+  end
 
-def create
- console.log(current_user)
-end
+  def index
+    @users = User.all
+  end
 
 end
