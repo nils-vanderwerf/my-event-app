@@ -27,9 +27,15 @@ a:hover {
 h1, h2 {
     font-weight: 600;
 }
+
+
+.navbar li {
+    list-style: none;
+}
+
 .navbar a, .navbar a:hover {
     text-decoration: none;
-    color: $dark-text;
+    color: $light-text;
 }
 
 .btn-primary, .bg-primary {

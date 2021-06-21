@@ -26,7 +26,7 @@
                   <span><i class="far fa-window-close"></i> Cancel RSVP</span>
               <% end %>
 
-            <% elsif Event.future.includes(@event) %>
+            <% elsif !!Event.future.exists?(@event.id) %>
               <%= link_to rsvp_event_path, class: "btn btn-primary" do %>
                 <span><i class="far fa-check-circle"></i> RSVP</span>
               <% end %>
@@ -59,10 +59,12 @@
           </p>
           
           <p>
-            <span class="icon">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
+            
+            <p class="pb-3">
+              <span>
+                <i class="fa fa-map-marker" aria-hidden="true"></i> 
+                <%= @event.location %>
             </span>
-            <%= simple_format @event.location %>
           </p>
 
           <p class="pb-3">

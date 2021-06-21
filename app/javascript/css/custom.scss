@@ -26,3 +26,7 @@ $container-max-widths: (
   xl: 1140px,
   xxl: 1320px
 );
+
+ul.navbar-nav {
+    flex-direction: row;
+} 
