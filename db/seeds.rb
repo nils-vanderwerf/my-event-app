@@ -33,7 +33,7 @@ User.create!(name: 'Example User',
              password: 'encrypted_password',
              password_confirmation: 'encrypted_password')
 
-Event.create!(host_id: '7',
+Event.create!(host_id: '6',
               name: 'East Meets West Orchestral Evening',
               description: "Experience Australia's finest musicians performing traditional and contemporary music from the East and the West, including the acclaimed Chinese classics, Butterfly Lovers Violin Concerto and the Yellow River Piano Concerto. This orchestral concert will begin its national tour in Canberra, followed by Sydney, Brisbane and Adelaide from late June to September 2021.",
               location: 'Sydney Town Hall
@@ -55,7 +55,7 @@ Event.create!(host_id: '2',
               end_date: Date.new(2021, 7, 12),
               end_time: Time.zone.parse("20:00:00"))
 
-Event.create!(host_id: '7',
+Event.create!(host_id: '5',
               name: 'Seaside Scavenge Bronte Festival',
               description: 'In partnership with the Hon. Dave Sharma and Waverley Council, we are hosting the Bronte Seaside Scavenge Festival, where the trash you collect becomes “cash” to buy funky pre-loved clothes, toys and books.',
               location: 'Bronte Beach Park
@@ -66,7 +66,7 @@ Event.create!(host_id: '7',
               end_date: Date.new(2021, 6, 27),
               end_time: Time.zone.parse("15:00:00"))
 
-              Event.create!(host_id: '7',
+              Event.create!(host_id: '3',
               name: 'Seaside Scavenge Bronte Festival',
               description: 'In partnership with the Hon. Dave Sharma and Waverley Council, we are hosting the Bronte Seaside Scavenge Festival, where the trash you collect becomes “cash” to buy funky pre-loved clothes, toys and books.',
               location: 'Bronte Beach Park
@@ -79,7 +79,7 @@ Event.create!(host_id: '7',
               
 past_events = [
   {
-    host_id: '7',
+    host_id: '4',
     name: 'Girl Boss Night: Your biggest learnings',
     description: "An in-person and virtual event! We'll discuss your biggest learnings - what chances did you take (or not take) to get your dream career!",
     location: 'VMware Sydney
@@ -104,7 +104,7 @@ past_events = [
     end_time: Time.zone.parse("21:00:00")
   },
   {
-    host_id: '14',
+    host_id: '1',
     name: "Sydney's True Crime Tour",
     description: "Take a trip back in time and rediscover a bounty of Sydney True Crime stories combining humanity's darkest deeds with incredible scenery.",
     location: 'Parbury Lane

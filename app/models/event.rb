@@ -1,9 +1,9 @@
 class Event < ApplicationRecord
 
 
-    belongs_to :host, class_name: "User"
-    has_many :rsvps
-    has_many :guests, through: :rsvps
+    belongs_to :host, class_name: "User", optional: true 
+    has_many :rsvps, foreign_key: :attended_event_id
+    has_many :guests, through: :rsvps, class_name: "User"
 
     validates :name, presence: :true
     validates :location, presence: true
