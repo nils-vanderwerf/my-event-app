@@ -9,9 +9,6 @@ has_many :attended_events, through: :rsvps
 has_many :rsvps, foreign_key: :guest_id
 
 
-
-
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
