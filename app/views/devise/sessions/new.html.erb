@@ -34,6 +34,8 @@
               <%= link_to 'Create an account', new_user_registration_path, class: 'nav-link inline-link' %><br>
               <i class="fab fa-facebook inline-link"></i>
               <%= link_to "Log In with Facebook", user_facebook_omniauth_authorize_path, class: 'nav-link inline-link' %>
+
+              <%= render "devise/shared/links" %>
             </div>
           <% end %>
         </div>
