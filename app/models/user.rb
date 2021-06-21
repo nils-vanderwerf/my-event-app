@@ -2,11 +2,15 @@ class User < ApplicationRecord
   # when the object is destroyed, events will be deleted
   validates :name, presence: :true
   validates :email, presence: :true
-  has_many :hosted_events, class_name: "Event", foreign_key: :host_id, dependent: :destroy
-  has_many :hosts, through: :events
+  has_many :hosted_events, foreign_key: :host_id, class_name: "Event"
 
-  has_many :rsvps, foreign_key: :guest_id
-  has_many :events, through: :rsvps
+has_many :attended_events, through: :rsvps
+
+has_many :rsvps, foreign_key: :guest_id
+
+
+
+
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

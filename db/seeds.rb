@@ -66,16 +66,7 @@ Event.create!(host_id: '7',
               end_date: Date.new(2021, 6, 27),
               end_time: Time.zone.parse("15:00:00"))
 
-              Event.create!(host_id: '7',
-              name: 'Seaside Scavenge Bronte Festival',
-              description: 'In partnership with the Hon. Dave Sharma and Waverley Council, we are hosting the Bronte Seaside Scavenge Festival, where the trash you collect becomes “cash” to buy funky pre-loved clothes, toys and books.',
-              location: 'Bronte Beach Park
-              Bronte Road
-              Bronte, NSW 2024',
-              start_date: Date.new(2021, 6, 20),
-              start_time: Time.zone.parse("21:30:00"),
-              end_date: Date.new(2021, 6, 20),
-              end_time: Time.zone.parse("23:30:00"))
+
               
 past_events = [
   {
@@ -104,7 +95,7 @@ past_events = [
     end_time: Time.zone.parse("21:00:00")
   },
   {
-    host_id: '14',
+    host_id: '4',
     name: "Sydney's True Crime Tour",
     description: "Take a trip back in time and rediscover a bounty of Sydney True Crime stories combining humanity's darkest deeds with incredible scenery.",
     location: 'Parbury Lane

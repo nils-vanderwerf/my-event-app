@@ -2,7 +2,7 @@ class Event < ApplicationRecord
 
 
     belongs_to :host, class_name: "User"
-    has_many :rsvps
+    has_many :rsvps, foreign_key: :attended_event_id, class_name: "Rsvp"
     has_many :guests, through: :rsvps
 
     validates :name, presence: :true
