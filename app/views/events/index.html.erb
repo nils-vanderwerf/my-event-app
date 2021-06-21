@@ -1,5 +1,5 @@
-<h1>Welcome, <%= current_user.present? ? current_user[:name] : 'Stranger' %> </h1>
 
+<<<<<<< HEAD
 <div class="row-upcoming">
     <% if Event.today %>
     <h2>HAPPENING TODAY<h2>
@@ -32,17 +32,52 @@
     <% end %>
     <% end %>
     </div>
+=======
+<div class="row mb-4">
+    <div class="col">
+        <h1>Welcome, <%= current_user.present? ? current_user[:name] : 'Stranger' %> 
+        </h1>
+    </div>
+
+    <div class="col">
+        <%= link_to 'Create Event', new_event_path, 
+        class: "btn-primary btn-rounded btn-lg mt-4 float-right" %>
+    </div>
 </div>
 
-<h2>PAST EVENTS<h2>
-<div class="row card-wrapper mb-5">
-<% Event.past.each do |event| %>
-    <%= render partial: 'event_card', 
-    :locals => {
-        :name => event.name.titleize, 
-        :start_date => event.start_date.strftime("%b %-d, %Y"), :start_time => event.start_time.strftime(" at %l:%M %P"),
-        id: event.id
-    } 
-    %>
-<% end %>
+<div class="row mb-5">
+    <% if !Event.today.empty? %>
+    <h2>HAPPENING TODAY</h2>
+        <div class="row card-wrapper mb-5">
+            <% Event.today.each do |event| %>
+                <%= render partial: 'event_card', :locals => { event: event } %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+
+<div class="row mb-4">
+    <div class="row-upcoming">
+        <% if !Event.future.empty? %>
+            <h2>UPCOMING EVENTS</h2>
+            <div class="row card-wrapper mb-5">
+                <% Event.future.each do |event| %>
+                    <%= render partial: 'event_card', :locals => { event: event} %>
+                <% end %>
+            </div>
+        <% end %>
+>>>>>>> bbfc28db20f950dbcbb2817af924d7e843f56140
+</div>
+
+<div class="row mb-4">
+<div class="row-past">
+    <% if !Event.past.empty? %>
+        <h2>PAST EVENTS</h2>
+        <div class="row card-wrapper mb-5">
+        <% Event.past.each do |event| %>
+            <%= render partial: 'event_card', :locals => { event: event} %>
+        <% end %>
+        </div>
+    <% end %>
 </div>

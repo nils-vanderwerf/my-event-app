@@ -8,16 +8,17 @@ class Event < ApplicationRecord
     validates :name, presence: :true
     validates :location, presence: true
     validate :existance_of_date_time,
-            :correct_date_format,
-            :start_date_must_be_in_future,
-            :end_must_be_after_start
+             :correct_date_format,
+             :start_date_must_be_in_future,
+             :end_must_be_after_start
 
-            scope :today, -> { where('start_date == ?', Date.today).order(:start_time) }
+             scope :today, -> { where('start_date == ?', Date.today).order(:start_time) }
 
-            scope :future, -> { where('start_date > ?', Date.today).order(:start_time) }
+             scope :future, -> { where('start_date > ?', Date.today).order(:start_time) }
+ 
+             scope :past, -> { where('end_date < ?', Date.today).order(date_time: :desc) }
 
-            scope :past, -> { where('end_date < ?', Date.today).order(date_time: :desc) }
-
+    private
     def existance_of_date_time
         return if end_date && end_time && start_time && start_date
 

@@ -29,20 +29,23 @@
             <% end %>
 
             <div class="actions">
-              <%= f.submit "Log in", class:"button btn-primary pt-1 pb-1 btn-block m-t-3 mb-3 mr-3 login" %>
+              <%= f.submit "Log in", class:"button btn-primary btn-rounded pt-1 pb-1 btn-block my-3 py-2 login" %>
               <i class="fas fa-user-circle"></i>
               <%= link_to 'Create an account', new_user_registration_path, class: 'nav-link inline-link' %><br>
               <i class="fab fa-facebook inline-link"></i>
               <%= link_to "Log In with Facebook", user_facebook_omniauth_authorize_path, class: 'nav-link inline-link' %>
+
+              <%= render "devise/shared/links" %>
             </div>
           <% end %>
         </div>
         <div class="block">
           <p>
+          <p class="small">
             <span class="icon">
               <i class="fa fa-sign-in has-text-danger" aria-hidden="true"></i>
             </span>
-            <strong class="has-text-danger">Tip:</strong> Log in by using the placeholder information
+            <strong class="has-text-danger">Tip:</strong> Log in by using the placeholder information</p>
           </p>
         </div>
       </div>
