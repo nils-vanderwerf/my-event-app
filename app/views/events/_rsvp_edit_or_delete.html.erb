@@ -1,25 +1,22 @@
+        <%# EVENT HAS ALREADY HAPPENED %>
+    <% if !!Event.past.exists?(event.id) %>
+        <span class="text-muted">This event has passed</span>
+    <% end %> 
     <%# EDIT OR DELETE EVENT %>
-    <% if current_user == event.host %>
+      <% if current_user == @event.host %>
+      
         <%= link_to edit_event_path, class: "btn btn-outline-secondary" do %>
             <span><i class="fas fa-edit"></i> Edit</span>
         <% end %>
-         <%= link_to event_path, method: :delete, 
+
+        <%= link_to event_path, method: :delete, 
                                 class: "btn btn-outline-secondary", 
                                 data: { confirm: "Delete this event?"} do %>
             <span><i class="far fa-trash-alt"></i> Delete</span>
         <% end %>
-    <%# RSVP %>
-    <% elsif !!Event.future.exists?(event.id) || !!Event.today.exists?(event.id) && !event.guests.include?(current_user)  %>
-        <%= link_to rsvp_event_path, class: "btn btn-primary btn-lg" do %>
-        <span><i class="far fa-check-circle"></i> RSVP</span>
-        <% end %>
-    <%# CANCEL RSVP %>
-    <% elsif event.guests.include?(current_user) %>
-        <%= link_to cancel_rsvp_event_path, method: :delete, class: "btn btn-outline-secondary btn-lg" do %>
-        <span><i class="far fa-window-close"></i> Cancel RSVP</span>
-    <% end %>
 
-    <%# EVENT HAS ALREADY HAPPENED %>
-    <% else %>
-        <span class="text-muted">This event has passed</span>
-    <% end %>
+        <% elsif @event.guests.include?(current_user) %>
+            <%= link_to 'Cancel RSVP', cancel_rsvp_event_path, class: "btn btn-outline-secondary" %>
+        <% else %>
+            <%= link_to 'RSVP', rsvp_event_path, class: "btn btn-primary" %>
+        <% end %>   
