@@ -4,9 +4,10 @@ class User < ApplicationRecord
   validates :email, presence: :true
   has_many :hosted_events, foreign_key: :host_id, dependent: :destroy,  class_name: "Event"
 
-has_many :attended_events, through: :rsvps
+  has_many :comments 
+  has_many :commented_events, through: :comments
 
-has_many :rsvps, foreign_key: :guest_id, inverse_of: "guest"
+             
 
 
   # Include default devise modules. Others available are:

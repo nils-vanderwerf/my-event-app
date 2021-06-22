@@ -3,6 +3,9 @@ class Event < ApplicationRecord
     has_many :rsvps, foreign_key: :attended_event_id, class_name: "Rsvp"
     has_many :guests, through: :rsvps
 
+    has_many :comments
+    has_many :users, through: :comments
+
     validates :name, presence: :true
     validates :location, presence: true
     validate :existance_of_date_time,
