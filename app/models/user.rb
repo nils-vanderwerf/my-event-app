@@ -1,15 +1,12 @@
 class User < ApplicationRecord
-  # when the object is destroyed, events will be deleted
-  validates :name, presence: :true
-  validates :email, presence: :true
-  has_many :hosted_events, foreign_key: :host_id, dependent: :destroy,  class_name: "Event"
-
-  has_many :comments 
-  has_many :commented_events, through: :comments, source: :event
-
-  has_many :attended_events, through: :rsvps
-
-has_many :rsvps, foreign_key: :guest_id
+   # when the object is destroyed, events will be deleted
+   validates :name, presence: :true
+   validates :email, presence: :true
+   has_many :hosted_events, foreign_key: :host_id, dependent: :destroy,  class_name: "Event"
+ 
+ has_many :attended_events, through: :rsvps
+ 
+ has_many :rsvps, foreign_key: :guest_id, inverse_of: "guest"
 
 
   
