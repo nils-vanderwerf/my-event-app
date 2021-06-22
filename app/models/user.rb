@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :comments 
   has_many :commented_events, through: :comments, source: :event
 
+  has_many :attended_events, through: :rsvps
+
+has_many :rsvps, foreign_key: :guest_id
+
   
 
              
