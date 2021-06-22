@@ -2,7 +2,7 @@
   <p><strong>Email: <%= @user.email %></strong></p>
  <div class="row d-flex">
     <div class="col mb-4">
-        <p class="text-muted"> <%= pluralize(@user.hosted_events.count, 'event').upcase %> EVENTS HOSTED</p>
+        <p class="text-muted"> <%= pluralize(@user.hosted_events.count, 'event').upcase %> HOSTED</p>
         <div class="list-group mt-3">
             <% @user.hosted_events.each do |event| %>
             <div class="list-group-item list-group-item-action d-flex">

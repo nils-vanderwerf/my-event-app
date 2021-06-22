@@ -8,13 +8,13 @@ class Event < ApplicationRecord
     validate :existance_of_date_time,
              :correct_date_format,
              :start_date_must_be_in_future,
-             :end_must_be_after_start
+             :end_must_be_after_start;
 
-             scope :today, -> { where('start_date == ?', Date.today).order(:start_time) }
+    scope :today, -> { where('start_date = ?', Date.today).order(:start_time) }
 
-             scope :future, -> { where('start_date > ?', Date.today).order(:start_time) }
- 
-             scope :past, -> { where('end_date < ?', Date.today).order(date_time: :desc) }
+    scope :future, -> { where('start_date > ?', Date.today).order(:start_time) }
+
+    scope :past, -> { where('end_date < ?', Date.today).order(date_time: :desc) }
 
     private
     def existance_of_date_time
@@ -51,11 +51,6 @@ class Event < ApplicationRecord
             errors.add(:end_time, 'must be after start time.')
         elsif start_date > end_date
             errors.add(:end_date, 'must be the same or after start date.')
-      end
+        end
     end
-
-    def is_today?
-        self.start_date <= Date.today && self.end_date <= Date.today && self.end_time <= Time.zone.now
-    end
-
 end

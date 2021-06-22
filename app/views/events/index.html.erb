@@ -1,48 +1,70 @@
+<div class="container">
 
-<div class="row mb-4">
-    <div class="col">
-        <h1>Welcome, <%= current_user.present? ? current_user[:name] : 'Stranger' %> 
-        </h1>
-    </div>
-
-    <div class="col">
-        <%= link_to 'Create Event', new_event_path, 
-        class: "btn-primary btn-rounded btn-lg mt-4 float-right" %>
-    </div>
-</div>
-
-<div class="row mb-5">
-    <% if !Event.today.empty? %>
-    <h2>HAPPENING TODAY</h2>
-        <div class="row card-wrapper mb-5">
-            <% Event.today.each do |event| %>
-                <%= render partial: 'event_card', :locals => { event: event } %>
-            <% end %>
+    <section class="row mb-4 header">
+        <div class="col">
+            <h1>Welcome, 
+                <%= current_user.present? ? current_user[:name] : 'Stranger' %> 
+            </h1>
         </div>
-    <% end %>
-</div>
 
+        <div class="col">
+            <%= link_to 'Create Event', new_event_path, 
+            class: "btn-primary btn-rounded btn-lg mt-4 float-right" %>
+        </div>
+    </section>
+  
+    <section class="events-container mb-4">
+        <% if !Event.today.empty? %>
+            <section class="today-row">
+                <header class="section-title">
+                    <h3>HAPPENING TODAY</h3>    
+                </header>
 
-<div class="row mb-4">
-    <div class="row-upcoming">
+                <div class="row">
+                    <div class="card-wrapper mb-5">
+                        <% Event.today.each do |event| %>
+                            <%= render partial: 'event_card', :locals => { event: event} %>
+                        <% end %>
+                    </div>
+                </div>
+            </section>
+        <% end %>
+
         <% if !Event.future.empty? %>
-            <h2>UPCOMING EVENTS</h2>
-            <div class="row card-wrapper mb-5">
-                <% Event.future.each do |event| %>
-                    <%= render partial: 'event_card', :locals => { event: event} %>
-                <% end %>
-            </div>
-        <% end %>
-</div>
+            <section class="future-row">
+                <header class="section-title">
+                    <h3>UPCOMING EVENTS</h3>    
+                </header>
 
-<div class="row mb-4">
-<div class="row-past">
-    <% if !Event.past.empty? %>
-        <h2>PAST EVENTS</h2>
-        <div class="row card-wrapper mb-5">
-        <% Event.past.each do |event| %>
-            <%= render partial: 'event_card', :locals => { event: event} %>
+
+                <div class="row">
+                    <div class="card-wrapper mb-5">
+                        <% Event.future.each do |event| %>
+                            <%= render partial: 'event_card', :locals => { event: event} %>
+                        <% end %>
+                    </div>
+                </div>
+            </section>
         <% end %>
-        </div>
-    <% end %>
-</div>
+
+        <% if !Event.past.empty? %>
+            <section class="past-row">
+                <div class="row">
+                    <header class="section-title">
+                        <h3>PAST EVENTS</h2>    
+                    </header>
+                </div>
+
+
+                <div class="row">
+                    <div class="card-wrapper mb-5">
+                        <% Event.future.each do |event| %>
+                            <%= render partial: 'event_card', :locals => { event: event} %>
+                        <% end %>
+                    </div>
+                </div>
+            </section>
+        <% end %>
+    </section>
+
+</div> <%# container %>

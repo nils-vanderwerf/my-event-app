@@ -1,13 +1,11 @@
 <section class="section">
   <div class="container">
     <div class="columns is-centered">
-      <div class="column is-6">
 
         <div class="row mb-4">
-          <div class="col title">
+          <header class="col title">
             <h2><%= @event.name %></h2>
-            
-          </div>
+          </header>
         </div>
         
         <div class="col text-right rsvp-or-edit">
@@ -26,7 +24,7 @@
                   <span><i class="far fa-window-close"></i> Cancel RSVP</span>
               <% end %>
 
-            <% elsif !!Event.future.exists?(@event.id) %>
+            <% elsif !!Event.future.exists?(@event.id) || !!Event.today.exists?(@event.id)  %>
               <%= link_to rsvp_event_path, class: "btn btn-primary" do %>
                 <span><i class="far fa-check-circle"></i> RSVP</span>
               <% end %>
