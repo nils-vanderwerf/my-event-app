@@ -21,13 +21,14 @@
     </div>
 
     <div class="col mb-4 text-right">
-        <p class="text-muted"> <%= pluralize(@user.events.count, 'event').upcase %> ATTENDED</p>
+        <p class="text-muted"> <%= pluralize(@user.rsvps.count, 'event').upcase %> ATTENDED</p>
         <div class="list-group mt-3">
-            <% @user.events.each do |event| %>
+            <% @user.rsvps.each do |rsvp| %>
                 <div class="list-group-item list-group-item-action d-flex">
-                <%= link_to event.name, event_path(event), class: "list-group-item list-group-item-action" %>
+                <%= link_to rsvp.event.name, event_path(rsvp.event), class: "list-group-item list-group-item-action" %>
 
-                <%= link_to event_path(event), method: :delete, class: "btn btn-outline-secondary", data: { confirm: "Do you no longer wish to attend this event?"} do %>
+                <%= link_to cancel_rsvp_event_path(rsvp.event), method: :delete,
+                 class: "btn btn-outline-secondary", data: { confirm: "Do you no longer wish to attend this event?"} do %>
                   <span><i class="far fa-window-close"></i><br/> Cancel RSVP<span>
               <% end %>
               </div>

@@ -104,7 +104,11 @@ past_events = [
     end_time: Time.zone.parse("21:00:00")
   },
   {
+<<<<<<< HEAD
     host_id: '1',
+=======
+    host_id: '4',
+>>>>>>> ed2f5576a8573edcfabe45906b19c5b43ce1943c
     name: "Sydney's True Crime Tour",
     description: "Take a trip back in time and rediscover a bounty of Sydney True Crime stories combining humanity's darkest deeds with incredible scenery.",
     location: 'Parbury Lane
