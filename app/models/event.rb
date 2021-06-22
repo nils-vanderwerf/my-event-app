@@ -12,9 +12,9 @@ class Event < ApplicationRecord
 
     scope :today, -> { where('start_date = ?', Date.today).order(:start_time) }
 
-    scope :future, -> { where('start_date > ?', Date.today).order(:start_time) }
+    scope :future, -> { where('start_date > ?', Date.today).order(:start_date) }
 
-    scope :past, -> { where('end_date < ?', Date.today).order(date_time: :desc) }
+    scope :past, -> { where('end_date < ?', Date.today).order(:start_date) }
 
     private
     def existance_of_date_time

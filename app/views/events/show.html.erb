@@ -1,106 +1,83 @@
-<section class="section">
-  <div class="container">
-    <div class="columns is-centered">
 
-        <div class="row mb-4">
-          <header class="col title">
-            <h2><%= @event.name %></h2>
-          </header>
-        </div>
-        
-        <div class="col text-right rsvp-or-edit">
-            <%# ABILITY TO RSVP %>
-            <% if current_user == @event.host %>
-                <%= link_to edit_event_path, class: "btn btn-outline-secondary" do %>
-                 <span><i class="fas fa-edit"></i> Edit</span>
-                <% end %>
-
-                 <%= link_to event_path, method: :delete, class: "btn btn-outline-secondary", data: { confirm: "Delete this event?"} do %>
-                  <span><i class="far fa-trash-alt"></i> Delete</span>
-                <% end %>
-
-            <% elsif @event.guests.include?(current_user) %>
-             <%= link_to cancel_rsvp_event_path, method: :delete, class: "btn btn-outline-secondary" do %>
-                  <span><i class="far fa-window-close"></i> Cancel RSVP</span>
-              <% end %>
-
-            <% elsif !!Event.future.exists?(@event.id) || !!Event.today.exists?(@event.id)  %>
-              <%= link_to rsvp_event_path, class: "btn btn-primary" do %>
-                <span><i class="far fa-check-circle"></i> RSVP</span>
-              <% end %>
-
-            <% else %>
-                <span class="text-muted">This event has passed</span>
-
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row mb-4 event-details-outer-wrapper">
-          <section class="col text-left description">
-            <div class="card-body">
-                  <p class="desc-text"> 
-                    <%= simple_format @event.description %> 
-                  </p>
-            </div>
-          </section>
-        
-
-
-        <section class="col text-right" id="event-extra-details">
-          <div class="card-body">
-          <p>
-            <span class="icon">
-              <i class="fa fa-user-circle" aria-hidden="true"></i>
-            </span>
-            Hosted by: <%= @event.host.name %>
-          </p>
-          
-          <p>
-            
-            <p class="pb-3">
-              <span>
-                <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                <%= @event.location %>
-            </span>
-          </p>
-
-          <p class="pb-3">
-            <span class="icon">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
-            </span>
-            <%= @event.start_date.strftime("%b %-d, %Y")%>
-            <%= @event.start_time.strftime(" at %l:%M %P")%> -<br/>
-            <% if (@event.start_date - @event.end_date).to_i == 0 %>
-              <%= @event.end_time.strftime("%l:%M %P") %>
-            <% else %>
-              <%= @event.end_date.strftime("%b %-d, %Y")%>
-              <%= @event.end_time.strftime(" at %l:%M %P")%>
-            <% end %>
-          </p>
-        </section>
-
-
-        </div>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col">
-        <h3>EVENT GUESTS</h3>
-
-        <% if @event.guests.empty? %>
-        <div class="list-group">
-        <li class="list-group-item text-muted">This event has no guests yet</li>
-        </div>
-        <% else %>
-        <div class="list-group">
-        <% @event.guests.each do |guest| %>
-        <li class="list-group-item"> <%= guest.name %> </li>
-        <% end %>
-        <% end %>
-      </div>
+<header class="row mb-5" id="event-show-page">
+  <%#-------------HEADER---------------- %>
+    <div class="col xs-12 col-sm-6">
+        <h2><%= @event.name %></h2>
     </div>
+    
+    <div class="col xs-12 col-sm-6 rsvp-or-edit">
+      <%= render partial: 'rsvp_edit_or_delete', :locals => { event: @event} %>
+    </div>
+  <%# <----------END HEADER-------------> %>
+  </header>
+
+<div class="row mb-4 event-details">
+
+  <%# <----------DESCRIPTION-------------> %>
+  <section class="col-xs-12 col-sm-6 text-left description">
+    <div class="card-body">
+      <p class="desc-text"> 
+        <%= simple_format @event.description %> 
+      </p>
+    </div>
+  </section>
+
+  <section class="col-xs-12 col-sm-6" id="event-extra-details">
+
+  <%# <----------EVENT NAME-------------> %>
+    <p>
+      <span class="icon">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+      </span>
+      Hosted by: <%= @event.host.name %>
+    </p>
+  
+    <%# <----------EVENT LOCATION-------------> %>
+    <p class="pb-3">
+      <span>
+        <i class="fa fa-map-marker" aria-hidden="true"></i> 
+        <%= @event.location %>
+      </span>
+    </p>
+    <%# <----------DATE-------------> %>
+    <p class="pb-3">
+        <span class="icon">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+        </span>
+
+      <%#----- CONVERT TIME TO HUMAN READABLE----- %>
+      <%= @event.start_date.strftime("%b %-d, %Y")%>
+      <%= @event.start_time.strftime(" at %l:%M %P")%> -<br/>
+
+      <%#----- DISPLAY DATE AGAIN DEPENDING IF ITS ON THE SAME DAY----- %>
+      <% if (@event.start_date - @event.end_date).to_i == 0 %>
+        <%= @event.end_time.strftime("%l:%M %P") %>
+      <% else %>
+        <%= @event.end_date.strftime("%b %-d, %Y")%>
+        <%= @event.end_time.strftime(" at %l:%M %P")%>
+      <% end %>
+    </p>
   </div>
+    </section>
+
+  <section class="col-xs-12">
+    <div class="row mb-4">
+      <div class="col">
+    <h4>EVENT GUESTS</h4>
+
+    <% if @event.guests.empty? %>
+    <div class="list-group">
+    <li class="list-group-item text-muted">This event has no guests yet</li>
+    </div>
+    <% else %>
+    <div class="list-group">
+    <% @event.guests.each do |guest| %>
+    <li class="list-group-item"> <%= guest.name %> </li>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+</div>
 </section>
 
             
