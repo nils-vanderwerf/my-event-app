@@ -1,9 +1,8 @@
         <%# EVENT HAS ALREADY HAPPENED %>
     <% if !!Event.past.exists?(event.id) %>
         <span class="text-muted">This event has passed</span>
-    <% end %> 
     <%# EDIT OR DELETE EVENT %>
-      <% if current_user == @event.host %>
+      <% elsif current_user == @event.host %>
       
         <%= link_to edit_event_path, class: "btn btn-outline-secondary" do %>
             <span><i class="fas fa-edit"></i> Edit</span>
