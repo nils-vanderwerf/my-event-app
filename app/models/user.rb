@@ -11,6 +11,9 @@ has_many :rsvps, foreign_key: :guest_id, inverse_of: "guest"
 
 
 
+
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
