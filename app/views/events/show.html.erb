@@ -14,70 +14,71 @@
 <div class="row mb-4 event-details">
 
   <%# <----------DESCRIPTION-------------> %>
-  <section class="col-xs-12 col-sm-6 text-left description">
+  <section class="col-xs-12 col-sm-6 description">
     <div class="card-body">
       <p class="desc-text"> 
         <%= simple_format @event.description %> 
       </p>
     </div>
   </section>
-
+ <%# <----------EVENT NAME-------------> %>
   <section class="col-xs-12 col-sm-6" id="event-extra-details">
-
-  <%# <----------EVENT NAME-------------> %>
     <p>
       <span class="icon">
         <i class="fa fa-user-circle" aria-hidden="true"></i>
       </span>
-      Hosted by: <%= @event.host.name %>
+    Hosted by: <%= @event.host.name %>
     </p>
-  
+
     <%# <----------EVENT LOCATION-------------> %>
     <p class="pb-3">
-      <span>
-        <i class="fa fa-map-marker" aria-hidden="true"></i> 
-        <%= @event.location %>
-      </span>
+    <span>
+      <i class="fa fa-map-marker" aria-hidden="true"></i> 
+      <%= @event.location %>
+    </span>
     </p>
     <%# <----------DATE-------------> %>
     <p class="pb-3">
-        <span class="icon">
-          <i class="fa fa-calendar" aria-hidden="true"></i>
-        </span>
+    <span class="icon">
+      <i class="fa fa-calendar" aria-hidden="true"></i>
+    </span>
 
-      <%#----- CONVERT TIME TO HUMAN READABLE----- %>
-      <%= @event.start_date.strftime("%b %-d, %Y")%>
-      <%= @event.start_time.strftime(" at %l:%M %P")%> -<br/>
+    <%#----- CONVERT TIME TO HUMAN READABLE----- %>
+    <%= @event.start_date.strftime("%b %-d, %Y")%>
+    <%= @event.start_time.strftime(" at %l:%M %P")%> -<br/>
 
-      <%#----- DISPLAY DATE AGAIN DEPENDING IF ITS ON THE SAME DAY----- %>
-      <% if (@event.start_date - @event.end_date).to_i == 0 %>
-        <%= @event.end_time.strftime("%l:%M %P") %>
-      <% else %>
-        <%= @event.end_date.strftime("%b %-d, %Y")%>
-        <%= @event.end_time.strftime(" at %l:%M %P")%>
-      <% end %>
+    <%#----- DISPLAY DATE AGAIN DEPENDING IF ITS ON THE SAME DAY----- %>
+    <% if (@event.start_date - @event.end_date).to_i == 0 %>
+    <%= @event.end_time.strftime("%l:%M %P") %>
+    <% else %>
+    <%= @event.end_date.strftime("%b %-d, %Y")%>
+    <%= @event.end_time.strftime(" at %l:%M %P")%>
+    <% end %>
     </p>
-  </div>
+    </div>
     </section>
 
-  <section class="col-xs-12">
+  <section class="event-guests col-xs-12">
     <div class="row mb-4">
-      <div class="col">
-    <h4>EVENT GUESTS</h4>
+      <h4>EVENT GUESTS</h4>
 
-    <% if @event.guests.empty? %>
-    <div class="list-group">
-    <li class="list-group-item text-muted">This event has no guests yet</li>
-    </div>
-    <% else %>
-    <div class="list-group">
-    <% @event.guests.each do |guest| %>
-    <li class="list-group-item"> <%= guest.name %> </li>
-    <% end %>
-    <% end %>
+      <% if !@event.guests.empty? %>
+
+      <ul class="list-group">
+        <% @event.guests.each do |guest| %>
+          <li class="list-group-item"> 
+            <%= guest.name %>
+          </li>
+        <% end %>
+      </ul>
+      <% else %>
+        <ul class="list-group">
+          <li class="list-group-item text-muted">This event has no guests yet</li>
+        </ul>
+      
+      
+      <% end %>
   </div>
-</div>
-</div>
 </section>
 
             
