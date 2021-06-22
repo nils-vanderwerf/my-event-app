@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
 has_many :rsvps, foreign_key: :guest_id
 
+
   
 
              
