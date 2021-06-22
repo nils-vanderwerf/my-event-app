@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
     belongs_to :host, class_name: "User"
+    belongs_to :guests, class_name: "User"
     has_many :rsvps, foreign_key: :attended_event_id, class_name: "Rsvp"
-    has_many :guests, through: :rsvps
+    has_many :guests, through: :rsvps, source: :user
 
     has_many :comments
     has_many :users, through: :comments

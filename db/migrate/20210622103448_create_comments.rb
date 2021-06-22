@@ -2,7 +2,8 @@ class CreateComments < ActiveRecord::Migration[6.1]
   def change
     create_table :comments do |t|
       t.text :content
-      t.belongs_to
+      t.belongs_to :commented_events, foreign_key: { to_table: :events }, index: true, null: false
+      t.belongs_to :user
 
       t.timestamps
     end

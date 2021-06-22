@@ -5,11 +5,11 @@ class User < ApplicationRecord
   has_many :hosted_events, foreign_key: :host_id, dependent: :destroy,  class_name: "Event"
 
   has_many :comments 
-  has_many :commented_events, through: :comments
+  has_many :commented_events, through: :comments, source: :event
+
+  
 
              
-
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
