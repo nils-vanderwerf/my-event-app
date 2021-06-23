@@ -1,9 +1,22 @@
 class CommentsController < ApplicationController
-    before_action :find_event
+    before_action :find_event, only: [:new, :create]
 
     def new
         @comment = Comment.new
     end
+
+    def edit 
+        @comment = Comment.find(params[:id])
+    end
+
+    def update
+        @comment = Comment.find(params[:id])
+        if @comment.update(comment_params)
+          redirect_to Event.find(@comment.commented_event_id), notice: "Your event was updated"
+        else
+          render :edit
+        end
+      end
 
     def create
         @comment = Comment.new(comment_params)
@@ -16,6 +29,12 @@ class CommentsController < ApplicationController
         else
             render 'new'
         end
+    end
+
+    def destroy
+        @comment = Comment.find(params[:id])
+        @comment.destroy
+        redirect_to events_path
     end
 
 

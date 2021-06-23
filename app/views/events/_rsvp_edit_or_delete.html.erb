@@ -5,7 +5,7 @@
       <% elsif current_user == @event.host %>
       
         <%= link_to edit_event_path do %>
-            <span><i class="fas fa-edit"></i> Edit</span>
+            <span class="mr-2"><i class="fas fa-edit"></i> Edit</span>
         <% end %>
 
         <%= link_to event_path, method: :delete, 
