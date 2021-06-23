@@ -4,12 +4,11 @@
     <%# EDIT OR DELETE EVENT %>
       <% elsif current_user == @event.host %>
       
-        <%= link_to edit_event_path, class: "btn btn-outline-secondary" do %>
+        <%= link_to edit_event_path do %>
             <span><i class="fas fa-edit"></i> Edit</span>
         <% end %>
 
         <%= link_to event_path, method: :delete, 
-                                class: "btn btn-outline-secondary", 
                                 data: { confirm: "Delete this event?"} do %>
             <span><i class="far fa-trash-alt"></i> Delete</span>
         <% end %>

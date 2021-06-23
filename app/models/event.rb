@@ -57,4 +57,8 @@ class Event < ApplicationRecord
             errors.add(:end_date, 'must be the same or after start date.')
         end
     end
+
+    def human_readable_date
+        self.start_date.strftime("%b %-d, %Y")
+    end
 end

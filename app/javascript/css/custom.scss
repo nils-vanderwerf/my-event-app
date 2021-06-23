@@ -16,6 +16,10 @@ section#event-details {
     flex-wrap: wrap;
 }
 
+.event-page {
+    width: 100%;
+}
+
 input {
     outline: rgb(153, 152, 152);
 }
@@ -35,9 +39,14 @@ ul.navbar-nav {
     flex-direction: row;
 } 
 
-.card-wrapper {
+.card-wrapper, #new-comment {
     width: 100%;
 }
+
+.event-guests, .event-comments {
+    width: 50%;
+}
+
 
 header {
     height: 120px;
