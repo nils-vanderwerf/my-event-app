@@ -1,7 +1,7 @@
-<%= simple_form_for ([@event, @event.comments.build]) do |form| %>
+<%= form_for ([@event, @event.comments.build]) do |form| %>
     <div class="field">
     <%= form.label "Comment", :content %><br>
-    <%= form.text_field :content , class: "form-control" %>
+    <%= form.text_field :content, class: "form-control" %>
     </div>
 
     <div class="actions">
