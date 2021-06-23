@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :find_event, only: [:new, :create]
+    before_action :find_event, only: [:new, :create, :edit, :destroy]
 
     def new
         @comment = Comment.new
@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     def update
         @comment = Comment.find(params[:id])
         if @comment.update(comment_params)
-          redirect_to Event.find(@comment.commented_event_id), notice: "Your event was updated"
+          redirect_to event_path(find_event), notice: "Your event was updated"
         else
           render :edit
         end
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     def destroy
         @comment = Comment.find(params[:id])
         @comment.destroy
-        redirect_to events_path
+        redirect_to event_path(@event)
     end
 
 
@@ -45,6 +45,7 @@ class CommentsController < ApplicationController
     end
     
     def find_event
-        @event = Event.find(params[:event_id])
+        @comment = Comment.find(params[:id])
+        @event = Event.find(@comment.commented_event_id)
     end
 end
