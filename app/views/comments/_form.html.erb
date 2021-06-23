@@ -1,11 +1,11 @@
 <%= form_for ([@event, @event.comments.build]) do |form| %>
     <div class="field">
-    <%= form.label "Comment", :content %><br>
-    <%= form.text_field :content, class: "form-control" %>
+    <%= form.label :content, "Comment" %><br>
+    <%= form.text_area :content, class: "form-control" %>
     </div>
 
     <div class="actions">
-        <%= form.submit class:"button btn-primary btn-rounded pt-1 pb-1 btn-block my-3 py-2 sign-up" %>
+        <%= form.submit "Comment", class:"button btn-primary btn-rounded pt-1 pb-1 btn-block my-3 py-2 sign-up" %>
     </div>
 
 <% end %>

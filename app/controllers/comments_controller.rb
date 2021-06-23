@@ -1,14 +1,18 @@
 class CommentsController < ApplicationController
     before_action :find_event
 
-    def new 
+    def new
+        @comment = Comment.new
+    end
+
     def create
         @comment = Comment.new(comment_params)
+        @comment.commented_event_id = @event.id
         @comment.user_id = current_user.id
-        @comment.commented_events = @event.id
+        
 
         if @comment.save
-            redirect_to events_path(@event)
+            redirect_to event_path(@event)
         else
             render 'new'
         end
@@ -22,6 +26,6 @@ class CommentsController < ApplicationController
     end
     
     def find_event
-        @event = Event.find(params[:commented_events_id])
+        @event = Event.find(params[:event_id])
     end
 end

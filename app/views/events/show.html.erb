@@ -2,14 +2,14 @@
 <header class="row mb-5" id="event-show-page">
   <%#-------------HEADER---------------- %>
 
-     <%# <----------EVENT NAME-------------> %>
-    <div class="col xs-12 col-sm-6">
-        <h2><%= @event.name %></h2>
-    </div>
-    
-    <div class="col xs-12 col-sm-6 rsvp-or-edit">
-      <%= render partial: 'rsvp_edit_or_delete', :locals => { event: @event} %>
-    </div>
+  <%# <----------EVENT NAME-------------> %>
+  <div class="row header col xs-12 col-sm-6">
+      <h2><%= @event.name %></h2>
+  </div>
+
+  <div class="col xs-12 col-sm-6 rsvp-or-edit">
+    <%= render partial: 'rsvp_edit_or_delete', :locals => { event: @event} %>
+  </div>
   <%# <----------END HEADER-------------> %>
   </header>
 
@@ -25,7 +25,6 @@
   </section>
 
   <section class="col-xs-12 col-sm-6" id="event-extra-details">
-
     <p>
       <span class="icon">
         <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -54,39 +53,54 @@
     <% if (@event.start_date - @event.end_date).to_i == 0 %>
     <%= @event.end_time.strftime("%l:%M %P") %>
     <% else %>
-    <%= @event.end_date.strftime("%b %-d, %Y")%>
-    <%= @event.end_time.strftime(" at %l:%M %P")%>
+      <%= @event.end_date.strftime("%b %-d, %Y")%>
+      <%= @event.end_time.strftime(" at %l:%M %P")%>
     <% end %>
     </p>
     </div>
     </section>
-
-  <section class="event-guests col-xs-12">
-    <div class="row mb-4">
-      <h4>EVENT GUESTS</h4>
-      </div>
-      <div class="row mb-4">
-      <% if !@event.guests.empty? %>
-      <ul class="list-group">
-        <% @event.guests.each do |guest| %>
-          <li class="list-group-item"> 
-            <%= guest.name %>
-          </li>
-        <% end %>
-      </ul>
-      <% else %>
+  </div>
+  <section class="event-guests col-xs-12 pb-3 mb-3 border-bottom border-light">
+    <div class="row header mb-2">
+        <h4>EVENT GUESTS</h4>
+        </div>
+        <div class="row mb-4">
+        <% if !@event.guests.empty? %>
         <ul class="list-group">
-          <li class="list-group-item text-muted">This event has no guests yet</li>
-        </ul>      
-      <% end %>
-  </div>
-  </div>
-</section>
+          <% @event.guests.each do |guest| %>
+            <li class="list-group-item"> 
+              <%= guest.name %>
+            </li>
+          <% end %>
+        </ul>
+        <% else %>
+          <ul class="list-group">
+            <li class="list-group-item text-muted">This event has no guests yet</li>
+          </ul>      
+        <% end %>
+    </div>
+  </section>
 
  <%# <----------COMMENTS-------------> %>
 
-<section class="event comments">
-  <div class="row">
+<section class="event-comments col-xs-12 pb-3 mb-3 border-bottom border-light">
+  <div class="row header all-comments mb-2">
+    <h4>COMMENTS</h4>
+  </div>
+
+  <div class="row header all-comments">
+      <ul class="comments list-group">
+        <% @event.comments.each do |comment| %>
+          <li>
+            <p><%= comment.content %></p>
+            <p class="small">Commented by <%= comment.user.name %> <br>
+          at <%= comment.created_at.strftime("%b %-d, %Y, %l:%M %P") %> </p>
+          </li>
+        <% end %>
+      </ul>
+  </div>
+
+  <div class="row add-new-comment">
       <%= render 'comments/form' %>
   </div>
 </section>
