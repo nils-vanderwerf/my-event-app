@@ -20,6 +20,10 @@ p {
     font-size: 20px;
 }
 
+p.small {
+    font-size: 16px;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -29,13 +33,17 @@ h1, h2, h3 {
 }
 
 
-.navbar li {
+li {
     list-style: none;
 }
 
 .navbar a, .navbar a:hover {
     text-decoration: none;
     color: $light-text;
+}
+
+.section-title {
+    padding: 1.25em;
 }
 
 .btn-primary, .bg-primary {
