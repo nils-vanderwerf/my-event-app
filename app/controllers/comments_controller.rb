@@ -45,7 +45,12 @@ class CommentsController < ApplicationController
     end
     
     def find_event
-        @comment = Comment.find(params[:id])
-        @event = Event.find(@comment.commented_event_id)
+
+        begin
+            @comment = Comment.find(params[:id])
+            @event = Event.find(@comment.commented_event_id)
+        rescue ActiveRecord::RecordNotFound  
+            return @event = Event.find(params[:event_id])
+        end
     end
 end

@@ -66,6 +66,16 @@ header {
     padding: 15px 0;
 }
 
+ul.comments.list-group {
+    width: 100%;
+    }
+
+ul.comments.list-group li a {
+    display: inline !important;
+    margin-right: 15px;
+}
+
 .card {
     padding: 0;
 }
+
