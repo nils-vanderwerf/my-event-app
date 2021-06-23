@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_103448) do
+ActiveRecord::Schema.define(version: 2021_06_23_014530) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.integer "commented_events_id", null: false
+    t.integer "commented_event_id", null: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["commented_events_id"], name: "index_comments_on_commented_events_id"
+    t.index ["commented_event_id"], name: "index_comments_on_commented_event_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_06_22_103448) do
     t.index ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "events", column: "commented_events_id"
+  add_foreign_key "comments", "events", column: "commented_event_id"
   add_foreign_key "events", "users", column: "host_id"
   add_foreign_key "rsvps", "events", column: "attended_event_id"
   add_foreign_key "rsvps", "users", column: "guest_id"

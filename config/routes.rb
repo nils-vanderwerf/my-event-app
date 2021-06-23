@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :events do
+    resources :comments
     member do
       get 'rsvp'
       get 'cancel_rsvp'
@@ -14,7 +15,10 @@ Rails.application.routes.draw do
     end
   end
 
+
+resources :events do
   resources :comments
+end 
 
   root to: "events#index"
 end
