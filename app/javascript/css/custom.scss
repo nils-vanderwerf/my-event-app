@@ -49,7 +49,7 @@ ul.navbar-nav {
 
 
 header {
-    height: 120px;
+    height: 150px;
 }
 
 .description {
@@ -77,5 +77,14 @@ ul.comments.list-group li a {
 
 .card {
     padding: 0;
+}
+
+.event-facts {
+    width: 100%;
+}
+
+.event-facts p {
+    color: rgb(166, 166, 166);
+    margin-bottom: 0;
 }
 

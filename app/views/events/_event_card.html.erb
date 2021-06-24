@@ -9,6 +9,25 @@
         <p class="event-time">
             <%= convert_to_human_readable_time(event.start_time) %>
         </p>
+
+        <div class ="row event-facts">
+
+          <p class="small mb-1 d-block col-xs-12">
+            <i class="fa fa-user-friends"></i>
+            <%= event.guests.count %>
+          </p>
+
+          <p class="small mb-1 d-block col-xs-12">
+            <i class="fa fa-star"></i>
+            <%= event.comments.average(:rating).to_i %>
+          </p>
+
+          <p class="small col-xs-12"> 
+            <i class="fa fa-comment"></i>
+            <%= event.comments.count %>
+          </p>
+        </div>
+
         
         <%= link_to 'Learn More', event_path(id: event.id), 
         class: "btn btn-outline-primary btn-block" %>
