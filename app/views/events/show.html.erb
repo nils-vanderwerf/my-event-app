@@ -7,6 +7,25 @@
 
     <div class="row header col xs-12 col-sm-6">
         <h2><%= @event.name %></h2>
+        <div class ="event-facts">
+
+          <p class="small mb-1 d-block">Average rating: 
+            <i class="fa fa-user-friends"></i>
+          <%= pluralize(@event.guests.count, "attendees") %>
+          </p>
+
+          <p class="small mb-1 d-block">Average rating: 
+            <% @event.comments.average(:rating).to_i.times do %>
+                <i class="fa fa-star"></i>
+            <% end %>
+          <%= pluralize(@event.comments.average(:rating).to_i, "star") %>
+          </p>
+
+          <p class="small">Number of comments: 
+          <i class="fa fa-comment"></i>
+          <%= pluralize(" #{@event.comments.count}", "comment") %>
+          </p>
+        </div>
     </div>
 
     <div class="col xs-12 col-sm-6 rsvp-or-edit">
@@ -82,14 +101,21 @@
       <div class="row">
           <ul class="comments list-group">
             <% @event.comments.each do |comment| %>
-              <li>
-                <p><%= comment.content %></p>
-                <p class="small">Commented by <%= comment.user.name %> <br>
-              at <%= convert_to_human_readable_time(comment.created_at) %> </p>
-              
+                  <li>
+                    <p><%= comment.content %></p>
+                    <p class="small">Commented by <%= comment.user.name %> <br>
+                      <%= convert_to_human_readable_date(comment.created_at) %> </p>
+                      at <%= convert_to_human_readable_time(comment.created_at) %> </p>
+                  <% if comment.rating %>
+                  <p>
+                  <% comment.rating.times do %>
+                       <i class="fa fa-star"></i>
+                     <% end %>
+                     <%= pluralize(comment.rating, "star") %>
+                  <p>
+                  <% end %>
 
-                  <% if comment.user_id == current_user.id %>
-        
+                <% if comment.user_id == current_user.id %>
                   <%= link_to edit_comment_path(comment.id) do %>
                       <span class="mr-2"><i class="fas fa-edit"></i> Edit</span>
                   <% end %>
@@ -100,7 +126,6 @@
                   <% end %>
                 <% end %>
             <% end %>
-            </li>
           </ul>
       </div>
     </section>
@@ -112,5 +137,4 @@
     <section>
   </section>
 </div>
-      
 

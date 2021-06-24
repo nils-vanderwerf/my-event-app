@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :find_event, only: [:new, :create, :edit, :destroy]
+    before_action :find_event
 
     def new
         @comment = Comment.new
@@ -23,7 +23,6 @@ class CommentsController < ApplicationController
         @comment.commented_event_id = @event.id
         @comment.user_id = current_user.id
         
-
         if @comment.save
             redirect_to event_path(@event)
         else
@@ -41,7 +40,7 @@ class CommentsController < ApplicationController
     private
 
     def comment_params
-        params.require(:comment).permit(:content)
+        params.require(:comment).permit(:content, :rating)
     end
     
     def find_event

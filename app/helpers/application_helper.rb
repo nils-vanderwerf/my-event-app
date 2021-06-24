@@ -4,6 +4,6 @@ module ApplicationHelper
     end
 
     def convert_to_human_readable_time(time)
-        time.strftime(" at %l:%M %P")
+        time.strftime("%l:%M %P")
     end
 end

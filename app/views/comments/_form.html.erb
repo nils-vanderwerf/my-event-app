@@ -1,7 +1,18 @@
 <%= form_for ([@event, @event.comments.build]) do |form| %>
-    <div class="field">
-    <%= form.label :content, "Comment" %><br>
-    <%= form.text_area :content, class: "form-control" %>
+    <div class="field mb-2">
+        <%= form.label :content, "Comment" %><br>
+        <%= form.text_area :content, class: "form-control" %>
+    </div>
+
+     <div class="field mb-2" id="rating-form">
+        <%= form.label :rating, "Rating" %><br>
+        <%= form.select :rating, [
+             ['1 Star', 1],
+             ['2 Star', 2], 
+             ['3 Star', 3], 
+             ['4 Star', 4], 
+             ['5 Star', 5]
+        ], class: "form-select form-select-sm" %>
     </div>
 
     <div class="actions">

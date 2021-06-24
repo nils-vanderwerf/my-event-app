@@ -1,13 +1,13 @@
 <div class="card col-xs-12 col-md-4">
     <div class="card-body">
-        <h4 class="card-title"><%= event.name.titleize %></h3>
+        <h3 class="card-title"><%= event.name.titleize %></h3>
 
         <p class="event-date">
-            <%= event.start_date.strftime("%b %-d, %Y") %> 
+            <%= convert_to_human_readable_date(event.start_date) %> 
         </p>
         
         <p class="event-time">
-            <%= event.start_time.strftime(" at %l:%M %P") %>
+            <%= convert_to_human_readable_time(event.start_time) %>
         </p>
         
         <%= link_to 'Learn More', event_path(id: event.id), 
