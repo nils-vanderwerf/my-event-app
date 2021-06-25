@@ -81,6 +81,7 @@ ul.comments.list-group li a {
 
 .event-facts {
     width: 100%;
+    margin: auto;
 }
 
 .event-facts p {
@@ -88,3 +89,6 @@ ul.comments.list-group li a {
     margin-bottom: 0;
 }
 
+p.align-text-center {
+    text-align: center;
+}

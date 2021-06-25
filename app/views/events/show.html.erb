@@ -10,7 +10,7 @@
           <h2><%= @event.name %></h2>
           <div class ="event-facts">
 
-            <p class="small mb-1 d-block">Average rating: 
+            <p class="small mb-1 d-block">Attendees: 
               <i class="fa fa-user-friends"></i>
             <%= pluralize(@event.guests.count, "attendees") %>
             </p>
@@ -98,7 +98,8 @@
           </div>
     </section>
 
-  <section class="event-comments col-xs-12 pb-3 mb-3 border-bottom border-light">
+  <% if Event.past.include?(@event)%>
+  <section class="event-comments col-xs-12 pb-3 mb-3 border-bottom border-light"> 
     <section class="all-comments">
       <div class="row header mb-2">
         <h4>COMMENTS</h4>
@@ -138,9 +139,11 @@
 
     <section class="add-new-comment">
       <div class="add-new-comment">
+      <h4>ADD A COMMENT</h4>
           <%= render 'comments/form' %>
       </div>
     <section>
   </section>
+  <% end %>
 </div>
 
