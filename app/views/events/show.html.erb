@@ -14,7 +14,7 @@
               <i class="fa fa-user-friends"></i>
             <%= pluralize(@event.guests.count, "attendees") %>
             </p>
-
+        <% if Event.past.include?(@event) %>
             <p class="small mb-1 d-block">Average rating: 
               <%if @event.comments.average(:rating).to_i == 0 %> 
                   <i class="fa fa-star"></i>
@@ -30,6 +30,7 @@
             <i class="fa fa-comment"></i>
             <%= pluralize(" #{@event.comments.count}", "comment") %>
             </p>
+            <% end %>
           </div>
         </div>
     </div>
