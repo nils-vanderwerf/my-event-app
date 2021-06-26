@@ -46,7 +46,7 @@ class Event < ApplicationRecord
 
     def start_date_must_be_in_future
         return unless errors.messages.empty?
-        start_date > Time.zone.today
+        errors.add(:start_date, "must be in the future.") unless start_date > Time.zone.today
     end
 
     def end_must_be_after_start
