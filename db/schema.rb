@@ -10,24 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_053305) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "comments", force: :cascade do |t|
-    t.text "content"
-    t.bigint "commented_event_id", null: false
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "rating"
-    t.index ["commented_event_id"], name: "index_comments_on_commented_event_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2021_06_18_010651) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
+    t.date "start_date"
+    t.date "end_date"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "location"
@@ -35,14 +23,12 @@ ActiveRecord::Schema.define(version: 2021_06_25_053305) do
     t.bigint "host_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "start_date"
-    t.date "end_date"
     t.index ["host_id"], name: "index_events_on_host_id"
   end
 
   create_table "rsvps", force: :cascade do |t|
-    t.bigint "guest_id", null: false
-    t.bigint "attended_event_id", null: false
+    t.integer "guest_id", null: false
+    t.integer "attended_event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attended_event_id"], name: "index_rsvps_on_attended_event_id"
@@ -76,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_06_25_053305) do
     t.index ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "events", column: "commented_event_id"
   add_foreign_key "events", "users", column: "host_id"
+  add_foreign_key "rsvps", "events", column: "attended_event_id"
   add_foreign_key "rsvps", "users", column: "guest_id"
 end
