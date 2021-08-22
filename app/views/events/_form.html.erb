@@ -18,7 +18,8 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="form-group">
+  <div class="field mb-3">
     <%= form.label :name %><br />
     <%= form.text_field :name,
                       autofocus: true,
@@ -27,7 +28,7 @@
                       class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field mb-3">
     <%= form.label :description %><br />
     <%= form.text_area :description,
                     placeholder: "Description about the event",
@@ -43,41 +44,40 @@
   </div>
 
   <div class="field form-date-time">
-    <div>
-      <%= form.label "Start Date" %><br />
-      <%= form.date_field :start_date,
-                       required: true,
-                       placeholder: "dd/mm/yyyy",
-                       class: "form-control" %>
-    </div>
-    <div>
-      <%= form.label "Start Time" %><br />
-      <%= form.time_field :start_time,
-                       required: true,
-                       placeholder: "24:00",
-                       class: "datepicker form-control" %>
-    </div>
-   </div>
+    <%= form.label "Start Date" %><br />
+    <%= form.date_field :start_date,
+                      required: true,
+                      placeholder: "dd/mm/yyyy",
+                      class: "form-control" %>
+  </div>
 
   <div class="field form-date-time">
-    <div>
+    <%= form.label "Start Time" %><br />
+    <%= form.time_field :start_time,
+                      required: true,
+                      placeholder: "24:00",
+                      class: "datepicker form-control" %>
+  </div>
+
+
+  <div class="field form-date-time">
       <%= form.label "End Date" %><br />
       <%= form.date_field :end_date,
                        required: true,
                        placeholder: "dd/mm/yyyy",
                        class: "datepicker form-control" %>
-    </div>
-    <div>
+  </div>
+
+  <div class="field form-date-time">
       <%= form.label "End Time" %><br />
       <%= form.time_field :end_time,
                        required: true,
                        placeholder: "24:00",
                        class: "form-control" %>
-    </div>
    </div>
 
   <div class="actions">
     <%= form.submit class:"button btn-primary btn-rounded pt-1 pb-1 btn-block my-3 py-2 sign-up" %>
   </div>
+
 <% end %>
-</div>

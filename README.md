@@ -1,24 +1,23 @@
-# README
+This Ruby on Rails Application allows you to browse or create events in the future, past or happening today.
+The user can comment or rate past events, and RSVP to events.
+They can also edit or delete their own events
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby Version 2.6.1
 
-Things you may want to cover:
+* Gem Dependencies
+gem 'rails' "~> 6.1.3"
+gem 'jquery-rails'
+gem 'devise' "~> 4.8.0"
+gem "omniauth", "~> 1.9.1"
+gem 'omniauth-facebook' 
+gem 'dotenv-rails' "~> 2.7.6"
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Things I would like to improve and add
+- Invitations function
+- Categorising events
+- Filtering events by city
+- Ability to cancel events.
+- A notfications feature
+    For hosts - letting people know that someone plans to attend their event or has cancelled, or has left a comment.
+    For invitees - Lets users know if they have been invited to an event.
+- I would like to include custom tests.

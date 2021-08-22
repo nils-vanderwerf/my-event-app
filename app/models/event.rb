@@ -1,20 +1,24 @@
 class Event < ApplicationRecord
     belongs_to :host, class_name: "User"
+    has_many :guests, class_name: "User"
     has_many :rsvps, foreign_key: :attended_event_id, class_name: "Rsvp"
-    has_many :guests, through: :rsvps
+    has_many :guests, through: :rsvps 
+
+    has_many :comments, foreign_key: :commented_event_id, class_name: "Comment"
+    has_many :users, through: :comments
 
     validates :name, presence: :true
     validates :location, presence: true
     validate :existance_of_date_time,
              :correct_date_format,
              :start_date_must_be_in_future,
-             :end_must_be_after_start
+             :end_must_be_after_start;
 
-             scope :today, -> { where('start_date == ?', Date.today).order(:start_time) }
+    scope :today, -> { where('start_date = ?', Date.today).order(:start_time) }
 
-             scope :future, -> { where('start_date > ?', Date.today).order(:start_time) }
- 
-             scope :past, -> { where('end_date < ?', Date.today).order(date_time: :desc) }
+    scope :future, -> { where('start_date > ?', Date.today).order(:start_date) }
+
+    scope :past, -> { where('end_date < ?', Date.today).order(:start_date) }
 
     private
     def existance_of_date_time
@@ -42,7 +46,7 @@ class Event < ApplicationRecord
 
     def start_date_must_be_in_future
         return unless errors.messages.empty?
-        start_date > Time.zone.today
+        errors.add(:start_date, "must be in the future.") unless start_date > Time.zone.today
     end
 
     def end_must_be_after_start
@@ -51,11 +55,10 @@ class Event < ApplicationRecord
             errors.add(:end_time, 'must be after start time.')
         elsif start_date > end_date
             errors.add(:end_date, 'must be the same or after start date.')
-      end
+        end
     end
 
-    def is_today?
-        self.start_date <= Date.today && self.end_date <= Date.today && self.end_time <= Time.zone.now
+    def human_readable_date
+        self.start_date.strftime("%b %-d, %Y")
     end
-
 end

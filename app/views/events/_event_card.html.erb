@@ -1,18 +1,36 @@
-<div class="col-md-4 mb-4">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title"><%= event.name.titleize %></h3>
+<div class="card col-xs-12 col-md-4">
+    <div class="card-body">
+        <h3 class="card-title"><%= event.name.titleize %></h3>
 
-                <p class="event-date">
-                    <%= event.start_date.strftime("%b %-d, %Y") %> 
-                </p>
-                
-                <p class="event-time">
-                    <%= event.start_time.strftime(" at %l:%M %P") %>
-                </p>
-                
-                <%= link_to 'Learn More', event_path(id: event.id), 
-                class: "btn btn-outline-primary btn-block" %>
-            </div>
+        <p class="event-date">
+            <%= convert_to_human_readable_date(event.start_date) %> 
+        </p>
+        
+        <p class="event-time">
+            <%= convert_to_human_readable_time(event.start_time) %>
+        </p>
+
+        <div class ="<% if Event.past.include?(event)%> row <% end %> event-facts justify-content-between col-sm-6">
+
+          <p class="small mb-1 d-block col-xs-12 align-text-center">
+            <i class="fa fa-user-friends "></i>
+            <%= event.guests.count %>
+          </p>
+          <% if Event.past.include?(event) %>
+          <p class="small mb-1 d-block col-xs-12">
+            <i class="fa fa-star"></i>
+            <%= event.comments.average(:rating).to_i %>
+          </p>
+
+          <p class="small col-xs-12"> 
+            <i class="fa fa-comment"></i>
+            <%= event.comments.count %>
+          </p>
+          <% end %>
         </div>
-     </div>
+
+        
+        <%= link_to 'Learn More', event_path(id: event.id), 
+        class: "btn btn-outline-primary btn-block mt-3" %>
+    </div>
+</div>

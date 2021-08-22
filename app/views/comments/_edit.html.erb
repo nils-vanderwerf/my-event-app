@@ -1,0 +1,11 @@
+<%= form_for @comment do |form| %>
+    <div class="field">
+    <%= form.label :content, "Comment" %><br>
+    <%= form.text_area :content, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit "Comment", class:"button btn-primary btn-rounded pt-1 pb-1 btn-block my-3 py-2 sign-up" %>
+    </div>
+
+<% end %>
